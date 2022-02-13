@@ -1,1 +1,1 @@
-A simple command-line application.
+Assignment 1 for the course MDSD @ University of Southern Denmark 2022
