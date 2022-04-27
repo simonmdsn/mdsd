@@ -8,6 +8,7 @@
       fileExtensions="math" ecorePackage="Math.ecore#/">
     <genClasses ecoreClass="Math.ecore#//MathExp">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Math.ecore#//MathExp/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Math.ecore#//MathExp/externals"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Math.ecore#//MathExp/variables"/>
     </genClasses>
     <genClasses ecoreClass="Math.ecore#//VarBinding">
@@ -23,6 +24,10 @@
     </genClasses>
     <genClasses ecoreClass="Math.ecore#//VariableUse">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Math.ecore#//VariableUse/ref"/>
+    </genClasses>
+    <genClasses ecoreClass="Math.ecore#//External">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Math.ecore#//External/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Math.ecore#//External/types"/>
     </genClasses>
     <genClasses ecoreClass="Math.ecore#//Plus">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Math.ecore#//Plus/left"/>
@@ -42,6 +47,13 @@
     </genClasses>
     <genClasses ecoreClass="Math.ecore#//MathNumber">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Math.ecore#//MathNumber/value"/>
+    </genClasses>
+    <genClasses ecoreClass="Math.ecore#//Parenthesis">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Math.ecore#//Parenthesis/expreesion"/>
+    </genClasses>
+    <genClasses ecoreClass="Math.ecore#//MethodCall">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Math.ecore#//MethodCall/signature"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Math.ecore#//MethodCall/args"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

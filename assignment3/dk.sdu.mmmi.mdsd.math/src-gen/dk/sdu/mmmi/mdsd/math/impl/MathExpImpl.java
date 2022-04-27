@@ -3,6 +3,7 @@
  */
 package dk.sdu.mmmi.mdsd.math.impl;
 
+import dk.sdu.mmmi.mdsd.math.External;
 import dk.sdu.mmmi.mdsd.math.MathExp;
 import dk.sdu.mmmi.mdsd.math.MathPackage;
 import dk.sdu.mmmi.mdsd.math.VarBinding;
@@ -32,6 +33,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * </p>
  * <ul>
  *   <li>{@link dk.sdu.mmmi.mdsd.math.impl.MathExpImpl#getName <em>Name</em>}</li>
+ *   <li>{@link dk.sdu.mmmi.mdsd.math.impl.MathExpImpl#getExternals <em>Externals</em>}</li>
  *   <li>{@link dk.sdu.mmmi.mdsd.math.impl.MathExpImpl#getVariables <em>Variables</em>}</li>
  * </ul>
  *
@@ -58,6 +60,16 @@ public class MathExpImpl extends MinimalEObjectImpl.Container implements MathExp
    * @ordered
    */
   protected String name = NAME_EDEFAULT;
+
+  /**
+   * The cached value of the '{@link #getExternals() <em>Externals</em>}' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getExternals()
+   * @generated
+   * @ordered
+   */
+  protected EList<External> externals;
 
   /**
    * The cached value of the '{@link #getVariables() <em>Variables</em>}' containment reference list.
@@ -121,6 +133,21 @@ public class MathExpImpl extends MinimalEObjectImpl.Container implements MathExp
    * @generated
    */
   @Override
+  public EList<External> getExternals()
+  {
+    if (externals == null)
+    {
+      externals = new EObjectContainmentEList<External>(External.class, this, MathPackage.MATH_EXP__EXTERNALS);
+    }
+    return externals;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public EList<VarBinding> getVariables()
   {
     if (variables == null)
@@ -140,6 +167,8 @@ public class MathExpImpl extends MinimalEObjectImpl.Container implements MathExp
   {
     switch (featureID)
     {
+      case MathPackage.MATH_EXP__EXTERNALS:
+        return ((InternalEList<?>)getExternals()).basicRemove(otherEnd, msgs);
       case MathPackage.MATH_EXP__VARIABLES:
         return ((InternalEList<?>)getVariables()).basicRemove(otherEnd, msgs);
     }
@@ -158,6 +187,8 @@ public class MathExpImpl extends MinimalEObjectImpl.Container implements MathExp
     {
       case MathPackage.MATH_EXP__NAME:
         return getName();
+      case MathPackage.MATH_EXP__EXTERNALS:
+        return getExternals();
       case MathPackage.MATH_EXP__VARIABLES:
         return getVariables();
     }
@@ -177,6 +208,10 @@ public class MathExpImpl extends MinimalEObjectImpl.Container implements MathExp
     {
       case MathPackage.MATH_EXP__NAME:
         setName((String)newValue);
+        return;
+      case MathPackage.MATH_EXP__EXTERNALS:
+        getExternals().clear();
+        getExternals().addAll((Collection<? extends External>)newValue);
         return;
       case MathPackage.MATH_EXP__VARIABLES:
         getVariables().clear();
@@ -199,6 +234,9 @@ public class MathExpImpl extends MinimalEObjectImpl.Container implements MathExp
       case MathPackage.MATH_EXP__NAME:
         setName(NAME_EDEFAULT);
         return;
+      case MathPackage.MATH_EXP__EXTERNALS:
+        getExternals().clear();
+        return;
       case MathPackage.MATH_EXP__VARIABLES:
         getVariables().clear();
         return;
@@ -218,6 +256,8 @@ public class MathExpImpl extends MinimalEObjectImpl.Container implements MathExp
     {
       case MathPackage.MATH_EXP__NAME:
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+      case MathPackage.MATH_EXP__EXTERNALS:
+        return externals != null && !externals.isEmpty();
       case MathPackage.MATH_EXP__VARIABLES:
         return variables != null && !variables.isEmpty();
     }

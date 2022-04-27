@@ -78,6 +78,15 @@ public interface MathFactory extends EFactory
   VariableUse createVariableUse();
 
   /**
+   * Returns a new object of class '<em>External</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>External</em>'.
+   * @generated
+   */
+  External createExternal();
+
+  /**
    * Returns a new object of class '<em>Plus</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -121,6 +130,24 @@ public interface MathFactory extends EFactory
    * @generated
    */
   MathNumber createMathNumber();
+
+  /**
+   * Returns a new object of class '<em>Parenthesis</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Parenthesis</em>'.
+   * @generated
+   */
+  Parenthesis createParenthesis();
+
+  /**
+   * Returns a new object of class '<em>Method Call</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Method Call</em>'.
+   * @generated
+   */
+  MethodCall createMethodCall();
 
   /**
    * Returns the package supported by this factory.

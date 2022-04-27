@@ -106,6 +106,11 @@ public class MathAdapterFactory extends AdapterFactoryImpl
         return createVariableUseAdapter();
       }
       @Override
+      public Adapter caseExternal(External object)
+      {
+        return createExternalAdapter();
+      }
+      @Override
       public Adapter casePlus(Plus object)
       {
         return createPlusAdapter();
@@ -129,6 +134,16 @@ public class MathAdapterFactory extends AdapterFactoryImpl
       public Adapter caseMathNumber(MathNumber object)
       {
         return createMathNumberAdapter();
+      }
+      @Override
+      public Adapter caseParenthesis(Parenthesis object)
+      {
+        return createParenthesisAdapter();
+      }
+      @Override
+      public Adapter caseMethodCall(MethodCall object)
+      {
+        return createMethodCallAdapter();
       }
       @Override
       public Adapter defaultCase(EObject object)
@@ -243,6 +258,21 @@ public class MathAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
+   * Creates a new adapter for an object of class '{@link dk.sdu.mmmi.mdsd.math.External <em>External</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see dk.sdu.mmmi.mdsd.math.External
+   * @generated
+   */
+  public Adapter createExternalAdapter()
+  {
+    return null;
+  }
+
+  /**
    * Creates a new adapter for an object of class '{@link dk.sdu.mmmi.mdsd.math.Plus <em>Plus</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -313,6 +343,36 @@ public class MathAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createMathNumberAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link dk.sdu.mmmi.mdsd.math.Parenthesis <em>Parenthesis</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see dk.sdu.mmmi.mdsd.math.Parenthesis
+   * @generated
+   */
+  public Adapter createParenthesisAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link dk.sdu.mmmi.mdsd.math.MethodCall <em>Method Call</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see dk.sdu.mmmi.mdsd.math.MethodCall
+   * @generated
+   */
+  public Adapter createMethodCallAdapter()
   {
     return null;
   }

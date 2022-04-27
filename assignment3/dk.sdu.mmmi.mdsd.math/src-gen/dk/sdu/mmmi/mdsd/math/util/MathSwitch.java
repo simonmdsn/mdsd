@@ -119,6 +119,13 @@ public class MathSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case MathPackage.EXTERNAL:
+      {
+        External external = (External)theEObject;
+        T result = caseExternal(external);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case MathPackage.PLUS:
       {
         Plus plus = (Plus)theEObject;
@@ -156,6 +163,22 @@ public class MathSwitch<T> extends Switch<T>
         MathNumber mathNumber = (MathNumber)theEObject;
         T result = caseMathNumber(mathNumber);
         if (result == null) result = caseExpression(mathNumber);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case MathPackage.PARENTHESIS:
+      {
+        Parenthesis parenthesis = (Parenthesis)theEObject;
+        T result = caseParenthesis(parenthesis);
+        if (result == null) result = caseExpression(parenthesis);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case MathPackage.METHOD_CALL:
+      {
+        MethodCall methodCall = (MethodCall)theEObject;
+        T result = caseMethodCall(methodCall);
+        if (result == null) result = caseExpression(methodCall);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -260,6 +283,22 @@ public class MathSwitch<T> extends Switch<T>
   }
 
   /**
+   * Returns the result of interpreting the object as an instance of '<em>External</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>External</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseExternal(External object)
+  {
+    return null;
+  }
+
+  /**
    * Returns the result of interpreting the object as an instance of '<em>Plus</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -335,6 +374,38 @@ public class MathSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseMathNumber(MathNumber object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Parenthesis</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Parenthesis</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseParenthesis(Parenthesis object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Method Call</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Method Call</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseMethodCall(MethodCall object)
   {
     return null;
   }

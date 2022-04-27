@@ -46,10 +46,16 @@ public class MathParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getFactorAccess().getGroup_1_0_0(), "rule__Factor__Group_1_0_0__0");
 			builder.put(grammarAccess.getFactorAccess().getGroup_1_0_1(), "rule__Factor__Group_1_0_1__0");
 			builder.put(grammarAccess.getPrimaryAccess().getGroup_0(), "rule__Primary__Group_0__0");
-			builder.put(grammarAccess.getPrimaryAccess().getGroup_1(), "rule__Primary__Group_1__0");
 			builder.put(grammarAccess.getLetBindingAccess().getGroup(), "rule__LetBinding__Group__0");
+			builder.put(grammarAccess.getParenthesisAccess().getGroup(), "rule__Parenthesis__Group__0");
+			builder.put(grammarAccess.getExternalAccess().getGroup(), "rule__External__Group__0");
+			builder.put(grammarAccess.getExternalAccess().getGroup_4(), "rule__External__Group_4__0");
+			builder.put(grammarAccess.getMethodCallAccess().getGroup(), "rule__MethodCall__Group__0");
+			builder.put(grammarAccess.getMethodCallAccess().getGroup_3(), "rule__MethodCall__Group_3__0");
+			builder.put(grammarAccess.getMethodCallAccess().getGroup_3_1(), "rule__MethodCall__Group_3_1__0");
 			builder.put(grammarAccess.getMathExpAccess().getNameAssignment_1(), "rule__MathExp__NameAssignment_1");
-			builder.put(grammarAccess.getMathExpAccess().getVariablesAssignment_2(), "rule__MathExp__VariablesAssignment_2");
+			builder.put(grammarAccess.getMathExpAccess().getExternalsAssignment_2(), "rule__MathExp__ExternalsAssignment_2");
+			builder.put(grammarAccess.getMathExpAccess().getVariablesAssignment_3(), "rule__MathExp__VariablesAssignment_3");
 			builder.put(grammarAccess.getVarBindingAccess().getNameAssignment_1(), "rule__VarBinding__NameAssignment_1");
 			builder.put(grammarAccess.getVarBindingAccess().getExpressionAssignment_3(), "rule__VarBinding__ExpressionAssignment_3");
 			builder.put(grammarAccess.getExpAccess().getRightAssignment_1_1(), "rule__Exp__RightAssignment_1_1");
@@ -59,6 +65,13 @@ public class MathParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getLetBindingAccess().getBindingAssignment_3(), "rule__LetBinding__BindingAssignment_3");
 			builder.put(grammarAccess.getLetBindingAccess().getBodyAssignment_5(), "rule__LetBinding__BodyAssignment_5");
 			builder.put(grammarAccess.getVariableUseAccess().getRefAssignment(), "rule__VariableUse__RefAssignment");
+			builder.put(grammarAccess.getParenthesisAccess().getExpreesionAssignment_2(), "rule__Parenthesis__ExpreesionAssignment_2");
+			builder.put(grammarAccess.getExternalAccess().getNameAssignment_1(), "rule__External__NameAssignment_1");
+			builder.put(grammarAccess.getExternalAccess().getTypesAssignment_3(), "rule__External__TypesAssignment_3");
+			builder.put(grammarAccess.getExternalAccess().getTypesAssignment_4_1(), "rule__External__TypesAssignment_4_1");
+			builder.put(grammarAccess.getMethodCallAccess().getSignatureAssignment_1(), "rule__MethodCall__SignatureAssignment_1");
+			builder.put(grammarAccess.getMethodCallAccess().getArgsAssignment_3_0(), "rule__MethodCall__ArgsAssignment_3_0");
+			builder.put(grammarAccess.getMethodCallAccess().getArgsAssignment_3_1_1(), "rule__MethodCall__ArgsAssignment_3_1_1");
 		}
 	}
 	

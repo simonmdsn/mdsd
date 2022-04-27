@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link dk.sdu.mmmi.mdsd.math.MathExp#getName <em>Name</em>}</li>
+ *   <li>{@link dk.sdu.mmmi.mdsd.math.MathExp#getExternals <em>Externals</em>}</li>
  *   <li>{@link dk.sdu.mmmi.mdsd.math.MathExp#getVariables <em>Variables</em>}</li>
  * </ul>
  *
@@ -47,6 +48,18 @@ public interface MathExp extends EObject
    * @generated
    */
   void setName(String value);
+
+  /**
+   * Returns the value of the '<em><b>Externals</b></em>' containment reference list.
+   * The list contents are of type {@link dk.sdu.mmmi.mdsd.math.External}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Externals</em>' containment reference list.
+   * @see dk.sdu.mmmi.mdsd.math.MathPackage#getMathExp_Externals()
+   * @model containment="true"
+   * @generated
+   */
+  EList<External> getExternals();
 
   /**
    * Returns the value of the '<em><b>Variables</b></em>' containment reference list.

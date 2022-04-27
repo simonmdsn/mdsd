@@ -12,6 +12,7 @@ import dk.sdu.mmmi.mdsd.math.Mult
 import dk.sdu.mmmi.mdsd.math.Plus
 import dk.sdu.mmmi.mdsd.math.VarBinding
 import dk.sdu.mmmi.mdsd.math.VariableUse
+import dk.sdu.mmmi.mdsd.math.Parenthesis
 import java.util.HashMap
 import java.util.Map
 import javax.swing.JOptionPane
@@ -19,7 +20,7 @@ import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.generator.AbstractGenerator
 import org.eclipse.xtext.generator.IFileSystemAccess2
 import org.eclipse.xtext.generator.IGeneratorContext
-
+import dk.sdu.mmmi.mdsd.math.MethodCall
 
 /**
  * Generates code from your model files on save.
@@ -28,16 +29,17 @@ import org.eclipse.xtext.generator.IGeneratorContext
  */
 class MathGenerator extends AbstractGenerator {
 	
-	static Map<String, Integer> variables;
+	static Map<String, Integer> variables = new HashMap();
 
 	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
-		val math = resource.allContents.filter(MathExp).next
-		val result = math.compute
-		result.displayPanel
+		
+		//val math = resource.allContents.filter(MathExp).next
+		//val result = math.compute
+		//result.displayPanel
 		
 		for(e : resource.allContents.toIterable.filter(MathExp)) {
 			fsa.generateFile(
-				e.name.toString() + ".java",compile(e)
+				"math_expression/"+e.name.toString() + ".java",compile(e)
 			)
 		}
 		
@@ -45,42 +47,44 @@ class MathGenerator extends AbstractGenerator {
 	
 	
 	private def compile(MathExp mathexp) {
-		'''
-		package match_expression;
-		
-		public class «mathexp.name» {
-			«FOR exp : mathexp.variables» 
-			public int «exp.name»;
-			«ENDFOR»
+	'''
+	package math_expression;
 	
+	public class «mathexp.name» {
+		«FOR exp : mathexp.variables» 
+		public int «exp.name»;
+		«ENDFOR»
 		
-			public void compute() {
-				«FOR exp : mathexp.variables» 
-				«exp.name» = «exp.computeExpressionString»;
-				«ENDFOR»
-			}
+
+		«IF mathexp.externals.size > 0»
+		private External external
+		
+		public «mathexp.name»(External external) {
+			this.external = external;
 		}
-		'''
-	}
-		
-	def void displayPanel(Map<String, Integer> result) {
-		var resultString = ""
-		for (entry : result.entrySet()) {
-         	resultString += "var " + entry.getKey() + " = " + entry.getValue() + "\n"
-        }
-		
-		JOptionPane.showMessageDialog(null, resultString ,"Math Language", JOptionPane.INFORMATION_MESSAGE)
-	}
+		«ENDIF»		
 	
-	def static compute(MathExp math) {
-		variables = new HashMap()
-		for(varBinding: math.variables)
-			varBinding.computeExpression()
-		variables
-	}
+		public void compute() {
+			«FOR exp : mathexp.variables» 
+			«exp.name» = «exp.expression.computeExpressionString»;
+			«ENDFOR»
+		}
+		
+		«IF mathexp.externals.size > 0»	
+		interface External {
+			«FOR external: mathexp.externals.indexed»
+			public int «external.value.name»(«FOR type : external.value.types.indexed SEPARATOR ', '»«type.value» n«type.key»«ENDFOR»)
+			«ENDFOR»
+		}
+		«ENDIF»	
 	
+	}
+	'''
+	}
+			
 	def static dispatch String computeExpressionString(VarBinding binding) {
-		binding.expression.computeExpressionString
+		var value = binding.expression.computeExpressionString
+		return value
 	}
 	
 	def static dispatch String computeExpressionString(MathNumber exp) {
@@ -102,15 +106,29 @@ class MathGenerator extends AbstractGenerator {
 	def static dispatch String computeExpressionString(Div exp) {
 		exp.left.computeExpressionString + ' / '+ exp.right.computeExpressionString
 	}
+	
+	def static dispatch String computeExpressionString(VariableUse exp) {
+		if(exp.ref instanceof LetBinding) {
+			return (exp.ref as LetBinding).computeExpressionString
+		}
+		return exp.ref.name
+	}
+	
+	def static dispatch String computeExpressionString(Parenthesis exp) {
+		'(' + exp.expreesion.computeExpressionString + ')'
+	}
+	
 
 	def static dispatch String computeExpressionString(LetBinding exp) {
 		exp.body.computeExpressionString
 	}
 	
+	static int counter = 0;
 	
-	def static String computeBindingString(LetBinding binding){
-		binding.binding.computeExpressionString
+	def static dispatch String computeExpressionString(MethodCall binding){
+		return binding.signature.name + "("+ binding.args.map[e | e.computeExpressionString].join(', ') +")"
 	}
+
 	
 	
 	
@@ -157,5 +175,6 @@ class MathGenerator extends AbstractGenerator {
 	def static dispatch int computeBinding(LetBinding binding){
 		binding.binding.computeExpression
 	}
+	
 	
 }

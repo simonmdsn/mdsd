@@ -5,6 +5,7 @@ generate math "http://www.sdu.dk/mmmi/mdsd/Math"
 
 MathExp:
 	'program' name=ID 
+	(externals += External)*
 	(variables += VarBinding)*
 ;
 
@@ -21,7 +22,7 @@ Factor returns Expression:
 ;
 
 Primary returns Expression:
-	{MathNumber} value=INT  | '(' Exp ')'  |  VariableUse | LetBinding
+	{MathNumber} value=INT  | Parenthesis |  VariableUse | LetBinding | MethodCall
 ;
 
 LetBinding:
@@ -36,6 +37,17 @@ VariableUse:
 	ref = [Binding]
 ;
 
+Parenthesis returns Expression:
+	{Parenthesis} '('expreesion=Exp')'
+;
+
+External:
+	'external' name=ID '('types+=ID?(',' types+=ID)*')'
+;
+
+MethodCall returns Expression:
+	{MethodCall} signature = [External] '('(args+=Exp(',' args+=Exp)*)?')'
+;
 
 
 /**
